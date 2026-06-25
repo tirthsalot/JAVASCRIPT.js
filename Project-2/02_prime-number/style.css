@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(
+        135deg,
+        #050816,
+        #0b132b,
+        #1c2541
+    );
+
+    overflow: hidden;
+}
+
+.container{
+    width: 430px;
+    padding: 35px;
+
+    background: rgba(15, 20, 35, 0.95);
+
+    border: 2px solid #00e5ff;
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 20px #00e5ff,
+        0 0 40px #7b2cbf,
+        0 0 60px #00ff88;
+
+    transition: 0.4s ease;
+}
+
+.container:hover{
+    transform: translateY(-8px) scale(1.02);
+}
+
+h2{
+    color: #00ff88;
+    font-size: 30px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 10px #00ff88,
+        0 0 20px #00ff88;
+}
+
+input{
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 18px;
+
+    border: 2px solid #7b2cbf;
+    border-radius: 12px;
+
+    background: #111827;
+    color: white;
+
+    font-size: 17px;
+    transition: 0.3s;
+}
+
+input::placeholder{
+    color: #bdbdbd;
+}
+
+input:focus{
+    outline: none;
+
+    border-color: #00e5ff;
+
+    box-shadow:
+        0 0 10px #00e5ff,
+        0 0 20px #00e5ff;
+}
+
+button{
+    width: 100%;
+    padding: 15px;
+
+    border: none;
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    color: white;
+
+    background: linear-gradient(
+        45deg,
+        #00e5ff,
+        #7b2cbf,
+        #00ff88
+    );
+
+    transition: 0.3s;
+}
+
+button:hover{
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 20px #00e5ff,
+        0 0 30px #00ff88;
+}
+
+button:active{
+    transform: scale(0.98);
+}
+
+#result{
+    margin-top: 20px;
+
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+
+    text-shadow:
+        0 0 10px #00e5ff,
+        0 0 20px #00ff88;
+}
