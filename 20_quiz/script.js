@@ -1,125 +1,186 @@
 const questions = [
-{
-id: 1,
-question: "What does HTML stand for?",
-a: "Hyper Text Markup Language",
-b: "High Text Machine Language",
-c: "Hyperlink Text Markup Language",
-d: "Home Tool Markup Language",
-correctAnswer: "a"
-},
-{
-id: 2,
-question: "Which CSS property is used to change the text color?",
-a: "font-color",
-b: "text-color",
-c: "color",
-d: "background-color",
-correctAnswer: "c"
-},
-{
-id: 3,
-question: "Which keyword is used to declare a variable in JavaScript?",
-a: "variable",
-b: "var",
-c: "declare",
-d: "letvar",
-correctAnswer: "b"
-},
-{
-id: 4,
-question: "Which HTML tag is used to create a hyperlink?",
-a: "<link>",
-b: "<href>",
-c: "<a>",
-d: "<url>",
-correctAnswer: "c"
-},
-{
-id: 5,
-question: "Which CSS property is used to make text bold?",
-a: "font-style",
-b: "font-weight",
-c: "text-bold",
-d: "font-bold",
-correctAnswer: "b"
-},
-{
-id: 6,
-question: "Which method is used to print output in the browser console?",
-a: "console.print()",
-b: "print.console()",
-c: "console.log()",
-d: "log.console()",
-correctAnswer: "c"
-},
-{
-id: 7,
-question: "Which HTML tag is used to add an image?",
-a: "<image>",
-b: "<img>",
-c: "<picture>",
-d: "<src>",
-correctAnswer: "b"
-},
-{
-id: 8,
-question: "Which CSS property is used to change the background color?",
-a: "color",
-b: "background",
-c: "background-color",
-d: "bg-color",
-correctAnswer: "c"
-},
-{
-id: 9,
-question: "Which JavaScript function is used to select an element by its ID?",
-a: "getElementById()",
-b: "getElementByClass()",
-c: "queryById()",
-d: "selectElement()",
-correctAnswer: "a"
-},
-{
-id: 10,
-question: "Which HTML tag is used to create an unordered list?",
-a: "<ol>",
-b: "<li>",
-c: "<list>",
-d: "<ul>",
-correctAnswer: "d"
-}
+  {
+    id: 1,
+    qns: "What does JavaScript primarily used for?",
+    options: [
+      "Styling web pages",
+      "Creating database tables",
+      "Adding interactivity to websites",
+      "Designing images",
+    ],
+    correctAnswer: 2,
+  },
+  {
+    id: 2,
+    qns: "Which keyword is used to declare a variable in modern JavaScript?",
+    options: ["var", "let", "const", "Both let and const"],
+    correctAnswer: 3,
+  },
+  {
+    id: 3,
+    qns: "Which method is used to add an element at the end of an array?",
+    options: ["push()", "pop()", "shift()", "unshift()"],
+    correctAnswer: 0,
+  },
+  {
+    id: 4,
+    qns: "What is the output type of typeof null in JavaScript?",
+    options: ["null", "object", "undefined", "string"],
+    correctAnswer: 1,
+  },
+  {
+    id: 5,
+    qns: "Which symbol is used for strict equality comparison?",
+    options: ["==", "=", "===", "!="],
+    correctAnswer: 2,
+  },
+  {
+    id: 6,
+    qns: "Which function is used to convert a JSON string into a JavaScript object?",
+    options: [
+      "JSON.stringify()",
+      "JSON.parse()",
+      "JSON.convert()",
+      "JSON.object()",
+    ],
+    correctAnswer: 1,
+  },
+  {
+    id: 7,
+    qns: "Which array method creates a new array by applying a function to each element?",
+    options: ["filter()", "map()", "reduce()", "forEach()"],
+    correctAnswer: 1,
+  },
+  {
+    id: 8,
+    qns: "What is the default value of an uninitialized variable in JavaScript?",
+    options: ["null", "0", "undefined", "false"],
+    correctAnswer: 2,
+  },
+  {
+    id: 9,
+    qns: "Which event occurs when a user clicks on an HTML element?",
+    options: ["onchange", "onclick", "onload", "onsubmit"],
+    correctAnswer: 1,
+  },
+  {
+    id: 10,
+    qns: "Which method is used to remove the last element from an array?",
+    options: ["push()", "pop()", "shift()", "splice()"],
+    correctAnswer: 1,
+  },
 ];
 
+
 const question = document.getElementById("Quizqns");
+const option = document.getElementById("option");
+const nextBtn = document.getElementById("nextbtn");
+const Qnsnumber = document.getElementById("Qnsnumber");
+const result = document.getElementById("result");
+
 
 let count = 0;
-
-question.innerHTML = questions[count].question;
+let selectAnswer = null;
+let userScore = 0;
 
 
 function loadQuestion() {
 
-    const option = document.getElementById("option");
+    const currentQuestion = questions[count];
+
+    question.innerText = currentQuestion.qns;
+
+    Qnsnumber.innerText =
+        `Question ${count + 1}/${questions.length}`;
 
     option.innerHTML = "";
 
-    const currentQuestion = questions[count];
 
-    currentQuestion.option.forEach(function(e){
+    currentQuestion.options.forEach((e, index) => {
 
-        const col = document.createElement("div");
-        col.className = "col-md-6 mb-3";
+        let col = document.createElement("div");
 
-        const btn = document.createElement("button");
-        btn.innerHTML = e;
-        btn.className = "btn btn-outline-primary w-100";
+        col.classList.add("col-md-6");
 
-        col.appendChild(btn);
+
+        let button = document.createElement("button");
+
+        button.innerText = e;
+
+        button.classList.add(
+            "btn",
+            "btn-outline-dark",
+            "option-btn"
+        );
+
+
+        button.onclick = function () {
+
+            selectAnswer = index;
+            nextbtn()
+
+        };
+
+
+        col.appendChild(button);
+
         option.appendChild(col);
 
     });
 
 }
+
+
+
+nextBtn.onclick = nextbtn;
+
+
+function nextbtn() {
+
+    if (selectAnswer === questions[count].correctAnswer) {
+
+        userScore++;
+
+    }
+
+
+    if (count < questions.length - 1) {
+
+        count++;
+
+        selectAnswer = null;
+
+        loadQuestion();
+
+    }
+
+    else {
+
+        TotalResult();
+
+    }
+
+}
+
+
+function TotalResult() {
+
+    question.innerText = "Quiz Completed 🎉";
+
+    option.innerHTML = "";
+
+    Qnsnumber.innerText = "";
+
+    nextBtn.style.display = "none";
+
+
+    result.innerHTML = `
+        <h4 class="text-center mt-3">
+            🎊 Total Score : ${userScore}/${questions.length}
+        </h4>
+    `;
+
+}
+
 
 loadQuestion();
